@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 5258181822213302544}
   - component: {fileID: 5258181822213302545}
   m_Layer: 0
-  m_Name: Left Arm
+  m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -74158527
   m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ff3db0e71f2d24c4fa13eb31367b9be6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -250,6 +250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ebb8a22dfcdcc4aae53fbb834c2854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2331160093563586305, guid: e1c206d43eb9b4648926e085b843f67f, type: 3}
+  rotateSpeed: 100
+  bulletSpeed: 20
+  timeToDestroyBullet: 2
 --- !u!1 &5258181823339954014
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +349,7 @@ GameObject:
   - component: {fileID: 5258181823433063457}
   - component: {fileID: 5258181823433063458}
   m_Layer: 0
-  m_Name: Right Arm
+  m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +433,7 @@ GameObject:
   - component: {fileID: 5258181823493509918}
   - component: {fileID: 5258181823493509919}
   m_Layer: 0
-  m_Name: Right Leg
+  m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,7 +517,7 @@ GameObject:
   - component: {fileID: 5258181823744432384}
   - component: {fileID: 5258181823744432385}
   m_Layer: 0
-  m_Name: Left Leg
+  m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -661,7 +665,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -74158527
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d607440e91758164b98904ddb1327714, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -724,8 +728,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.018868536
+        time: 0.013661198
+        value: 0.034382164
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -737,15 +741,15 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.8901961, b: 0.1254902, a: 0.78431374}
-      key1: {r: 1, g: 0.43298838, b: 0.07924521, a: 0.78431374}
+      key0: {r: 1, g: 0.013207495, b: 0.12005051, a: 0.77254903}
+      key1: {r: 1, g: 0, b: 0, a: 0.98039216}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
+      ctime0: 578
       ctime1: 65535
       ctime2: 0
       ctime3: 0
