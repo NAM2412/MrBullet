@@ -6,11 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float rotateSpeed = 100f, bulletSpeed = 100f, timeToDestroyBullet = 2f;
+    [SerializeField] int numberOfBullets = 4;
 
     private Transform handPos;
     private Transform fireStartPos, fireEndPos;
 
     private LineRenderer lineRenderer; // the laser in game
+
+
+    #region Get,Set Method
+    public int GetNumberOfBullets() => numberOfBullets;
+    #endregion
 
     private void Awake()
     {
@@ -29,7 +35,15 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            Shoot();
+            if (numberOfBullets > 0)
+            {
+                Shoot();
+            }
+            else
+            {
+                lineRenderer.enabled = false;
+                //crosshair
+            }
         }
 
     }
@@ -60,8 +74,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             bullet.GetComponent<Rigidbody2D>().AddForce(-fireStartPos.right * bulletSpeed, ForceMode2D.Impulse);
-        }    
+        }
+
+        numberOfBullets--;
+
         Destroy(bullet, timeToDestroyBullet);
     }
+
+    
 
 }
