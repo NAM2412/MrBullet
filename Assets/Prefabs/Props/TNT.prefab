@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1115551173648331343}
   - component: {fileID: 181090716023421531}
   - component: {fileID: 3332930492284349266}
+  - component: {fileID: 525636896496578929}
   m_Layer: 0
   m_Name: TNT
-  m_TagString: Untagged
+  m_TagString: TNT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,3 +112,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 1.4}
   m_EdgeRadius: 0
+--- !u!114 &525636896496578929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6796725338256219260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88db2ca56ae60734d9fca2cf70911119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 1867682815271786877, guid: d1f0c39b23e69844294872b239f78fe3, type: 3}
+  radiusOfExplosion: 1.5
+  power: 10

@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private float damageToGetKilled = 1.5f;
 
     private void Die()
     {
@@ -28,9 +18,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D target)
     {
-        Vector2 force = GetForceVector(target.gameObject);
         if (target.tag == "Bullet")
         {
+            Vector2 force = GetForceVector(target.gameObject);
             if (transform.GetChild(0).GetComponent<Rigidbody2D>().gravityScale < 1)
             {
                 Die();
@@ -39,6 +29,24 @@ public class Enemy : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(new Vector2(force.x, force.y),
                                                        ForceMode2D.Impulse);
 
+        }
+
+
+
+        if (target.tag == "Plank")
+        {
+            if (target.GetComponent<Rigidbody2D>().velocity.magnitude > damageToGetKilled)
+            {
+                Die();
+            }
+        }
+
+        if (target.tag == "Ground")
+        {
+            if (this.GetComponent<Rigidbody2D>().velocity.magnitude > damageToGetKilled)
+            {
+                Die();
+            }
         }
     }
 
