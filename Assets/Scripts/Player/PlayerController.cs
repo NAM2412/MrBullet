@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float rotateSpeed = 100f, bulletSpeed = 100f, timeToDestroyBullet = 2f;
-    [SerializeField] int numberOfBullets = 4;
+    public int numberOfBullets = 4;
 
     private Transform handPos;
     private Transform fireStartPos, fireEndPos;
 
     private LineRenderer lineRenderer; // the laser in game
-
-
-    #region Get,Set Method
-    public int GetNumberOfBullets() => numberOfBullets;
-    #endregion
-
     private void Awake()
     {
         handPos = GameObject.Find("LeftArm").transform;
@@ -29,23 +24,27 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (!IsMouseOverUI())
         {
-            Aim();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (numberOfBullets > 0)
+            if (Input.GetMouseButton(0))
             {
-                Shoot();
+                Aim();
+               
             }
-            else
+            if (Input.GetMouseButtonUp(0))
             {
-                lineRenderer.enabled = false;
-                //crosshair
+                if (numberOfBullets > 0)
+                {
+                    Shoot();
+                }
+                else
+                {
+                    lineRenderer.enabled = false;
+                    //crosshair
+                }
+                
             }
         }
-
     }
 
     private void Aim()
@@ -78,9 +77,13 @@ public class PlayerController : MonoBehaviour
 
         numberOfBullets--;
 
+        FindObjectOfType<GameManager>().CheckBullets();
         Destroy(bullet, timeToDestroyBullet);
     }
 
-    
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
 
 }

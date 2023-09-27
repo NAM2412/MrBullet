@@ -9,6 +9,8 @@ TagManager:
   - Plank
   - TNT
   - Enemy
+  - BlackBullet
+  - GoldenBullet
   layers:
   - Default
   - TransparentFX
