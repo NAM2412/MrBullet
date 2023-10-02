@@ -5,16 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public bool gameOver;
+    [HideInInspector] public bool gameOver = false;
 
     [SerializeField] int enemyCount = 1;
     [SerializeField] int goldenBullets = 1;
     [SerializeField] int blackBullets = 3;
 
     [SerializeField] GameObject blackBullet, goldenBullet;
+    [SerializeField] GameObject gameOverPanel;
 
     void Awake()
     {
+        gameOverPanel.SetActive(false);
+
         FindObjectOfType<PlayerController>().numberOfBullets = blackBullets + goldenBullets;
         for (int i = 0; i < blackBullets; i++)
         {
@@ -27,13 +30,16 @@ public class GameManager : MonoBehaviour
             GameObject goldenBulletInstance = Instantiate(goldenBullet);
             goldenBulletInstance.transform.SetParent(GameObject.Find("BulletUI").transform);
         }
+
     }
 
     void Update()
     {
-        if (!gameOver && FindObjectOfType<PlayerController>().numberOfBullets <= 0 && enemyCount > 0)
+        if (!gameOver && FindObjectOfType<PlayerController>().numberOfBullets <= 0 && enemyCount > 0
+            && GameObject.FindGameObjectsWithTag("Bullet").Length <= 0)
         {
             gameOver = true;
+            gameOverPanel.SetActive(true);
         }
     }
 

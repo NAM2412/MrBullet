@@ -7,14 +7,19 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float rotateSpeed = 100f, bulletSpeed = 100f, timeToDestroyBullet = 2f;
+    [SerializeField] GameObject crosshair;
     public int numberOfBullets = 4;
 
     private Transform handPos;
     private Transform fireStartPos, fireEndPos;
 
     private LineRenderer lineRenderer; // the laser in game
+
+    
     private void Awake()
     {
+        crosshair.SetActive(false);
+
         handPos = GameObject.Find("LeftArm").transform;
         fireStartPos = GameObject.Find("FirePos1").transform;
         fireEndPos = GameObject.Find("FirePos2").transform;
@@ -40,7 +45,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     lineRenderer.enabled = false;
-                    //crosshair
+                    crosshair.SetActive(false);
                 }
                 
             }
@@ -58,11 +63,16 @@ public class PlayerController : MonoBehaviour
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, fireStartPos.position);
         lineRenderer.SetPosition(1, fireEndPos.position);
+
+
+        crosshair.SetActive(true);
+        crosshair.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3.forward * 10);
     }
 
     private void Shoot()
     {
         lineRenderer.enabled = false;
+        crosshair.SetActive(false);
 
         GameObject bullet = Instantiate(bulletPrefab, fireStartPos.position, Quaternion.identity);
 
