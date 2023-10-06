@@ -251,11 +251,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ebb8a22dfcdcc4aae53fbb834c2854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfBullets: 4
   bulletPrefab: {fileID: 2331160093563586305, guid: e1c206d43eb9b4648926e085b843f67f, type: 3}
   rotateSpeed: 100
-  bulletSpeed: 20
+  bulletSpeed: 16
   timeToDestroyBullet: 2
-  numberOfBullets: 4
+  crosshair: {fileID: 8045826770393281974}
+  gunShot: {fileID: 8300000, guid: 2cf3ae69c37c1e541ba20c47b0a25683, type: 3}
 --- !u!1 &5258181823339954014
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,9 +850,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -74158527
+  m_SortingLayer: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3cf588e6b2bb8634ebd21473956a0cd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

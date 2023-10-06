@@ -263,3 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac028a40d4023b44930f2eed4d97bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxHit: {fileID: 8300000, guid: f16c42ff38b83f74fa4f09d7abc9ceae, type: 3}
+  plankHit: {fileID: 8300000, guid: f3d29ddf364b09443af6b7e5baa28ae2, type: 3}
+  groundHit: {fileID: 8300000, guid: 6aa508be5f1c0be4ab1af1dc03d84084, type: 3}
+  explodeHit: {fileID: 8300000, guid: 082e5e1ec586b724e9a9bd7cd57fade3, type: 3}
+  soundEffectVolume: 1

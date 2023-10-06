@@ -5,10 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float damageToGetKilled = 1.5f;
+    [SerializeField] AudioClip death;
 
     private void Die()
     {
         gameObject.tag = "Untagged";
+        SoundManager.Instance.PlaySoundEffect(death, 0.75f);
 
         FindObjectOfType<GameManager>().CheckEnemyCount();
 
@@ -20,17 +22,19 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D target)
     {
+        Vector2 direction = transform.position - target.transform.position;
         if (target.tag == "Bullet")
         {
-            Vector2 force = GetForceVector(target.gameObject);
+            target.GetComponent<CircleCollider2D>().isTrigger = true;
             if (transform.GetChild(0).GetComponent<Rigidbody2D>().gravityScale < 1)
             {
                 Die();
                 
             }
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(force.x, force.y),
-                                                       ForceMode2D.Impulse);
-
+            GetComponent<Rigidbody2D>().AddForce(new Vector2((direction.x > 0 ? 1:-1) * 10, 
+                                                             (direction.y > 0 ? 0.3f : -0.3f) * 10),
+                                                             ForceMode2D.Impulse);
+        
         }
 
 
@@ -52,26 +56,5 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private Vector2 GetForceVector(GameObject target)
-    {
-        Vector2 force = Vector2.zero;
-        Vector2 direction = transform.position - target.transform.position;
-
-        // Get x
-        if (direction.x > 0)
-        {
-            force.x = 1;
-        }
-        else force.x = -1;
-
-
-        //Get y
-        if (direction.y > 0)
-        {
-            force.y = 0.3f;
-        }
-        else force.y = -0.3f;
-
-        return force;
-    }
+   
 }

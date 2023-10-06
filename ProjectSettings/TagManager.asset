@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - BlackBullet
   - GoldenBullet
+  - Ground
   layers:
   - Default
   - TransparentFX

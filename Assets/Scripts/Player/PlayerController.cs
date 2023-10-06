@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,19 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    public int numberOfBullets = 4;
+
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float rotateSpeed = 100f, bulletSpeed = 100f, timeToDestroyBullet = 2f;
     [SerializeField] GameObject crosshair;
-    public int numberOfBullets = 4;
+    [SerializeField] AudioClip gunShot;
 
     private Transform handPos;
     private Transform fireStartPos, fireEndPos;
 
     private LineRenderer lineRenderer; // the laser in game
+
+
 
     
     private void Awake()
@@ -88,6 +93,7 @@ public class PlayerController : MonoBehaviour
         numberOfBullets--;
 
         FindObjectOfType<GameManager>().CheckBullets();
+        SoundManager.Instance.PlaySoundEffect(gunShot, 0.3f);
         Destroy(bullet, timeToDestroyBullet);
     }
 

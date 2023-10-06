@@ -12,12 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] int blackBullets = 3;
 
     [SerializeField] GameObject blackBullet, goldenBullet;
-    [SerializeField] GameObject gameOverPanel;
+
+    public int GetBlackBullets() => blackBullets;
 
     void Awake()
     {
-        gameOverPanel.SetActive(false);
-
         FindObjectOfType<PlayerController>().numberOfBullets = blackBullets + goldenBullets;
         for (int i = 0; i < blackBullets; i++)
         {
@@ -39,7 +38,7 @@ public class GameManager : MonoBehaviour
             && GameObject.FindGameObjectsWithTag("Bullet").Length <= 0)
         {
             gameOver = true;
-            gameOverPanel.SetActive(true);
+            UIManager.Instance.ShowGameOverScreen();
         }
     }
 
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviour
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (enemyCount <= 0)
         {
-            Debug.Log("Win");
+            UIManager.Instance.ShowWinScreen();
         }
     }
 
@@ -69,5 +68,10 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
