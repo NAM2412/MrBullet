@@ -13,10 +13,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject blackBullet, goldenBullet;
 
+    private int levelNumber;
+
     public int GetBlackBullets() => blackBullets;
 
     void Awake()
     {
+        levelNumber = PlayerPrefs.GetInt("Level", 1);
+
+     
+
         FindObjectOfType<PlayerController>().numberOfBullets = blackBullets + goldenBullets;
         for (int i = 0; i < blackBullets; i++)
         {
@@ -48,6 +54,10 @@ public class GameManager : MonoBehaviour
         if (enemyCount <= 0)
         {
             UIManager.Instance.ShowWinScreen();
+            if (levelNumber >= SceneManager.GetActiveScene().buildIndex)
+            {
+                PlayerPrefs.SetInt("Level", levelNumber + 1);
+            }
         }
     }
 
@@ -65,6 +75,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+  
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -72,6 +83,11 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene(0);
     }
 }
